@@ -1,0 +1,45 @@
+=>REPLACE
+
+=Syntax 
+
+SELECT REPLACE(original,ori part,new);
+
+--------------------------------------
+
+SELECT REPLACE('Hello World','Hell','Zer');
+
+*no action
+SELECT REPLACE('Hello World','hell','Zer');
+
+*no action
+SELECT REPLACE('Hello World','hell0','Zer');
+
+SELECT REPLACE('Hello World','o','0');
+
+SELECT REPLACE('Hell0 World','0','*');
+SELECT REPLACE('Hello World','l','7');
+
+*Case Sensitive 
+SELECT REPLACE('Hello World','O','5');
+
+SELECT REPLACE('coffee milk bread cheese',' ',' and ');
+
+--------------------------------------
+
+SELECT * FROM persons;
+
+SELECT city FROM persons;
+
+SELECT REPLACE(city,'m','M') FROM persons;
+SELECT REPLACE(city,'m','M') AS capital FROM persons;
+SELECT REPLACE(city,'a','A') AS capital FROM persons;
+
+--------------------------------------
+
+=>REPLACE() with SUBSTRING() and CONCAT();
+
+SELECT SUBSTRING(REPLACE(city,'m','M'),1,5) FROM persons;
+
+SELECT CONCAT(SUBSTRING(REPLACE(address,'n','N'),1,10),'...') AS 'short address' FROM persons;
+
+--------------------------------------

@@ -1,0 +1,301 @@
+=>Choose Database 
+use wdf007
+
+=>SHOW Table 
+SHOW TABLES 
+SHOW FULL TABLES   table_type = BASE TABLE   
+
+SHOW TABLES FROM databasename;
+SHOW TABLES IN databasename;
+
+SHOW FULL TABLES FROM databasename;
+SHOW FULL TABLES IN databasename;
+
+=> Show Table (One Table) 
+Method 1
+DESCRIBE tablename   #structure ko pyan kyi
+DESC tablename
+
+Method 2 
+SHOW COLUMNS FROM tablename;
+
+*Check table from current db to another db
+SHOW COLUMNS FROM databasename.tablename;
+SHOW COLUMNS FROM tablename IN databasename;
+
+=>Create Table 
+=syntax 
+
+CREATE TABLE tablename(
+    column1 datatype,
+    column1 datatype,
+    column1 datatype,
+    ......
+)
+
+CREATE TABLE persons(
+    personid INT,
+    firstname VARCHAR(255),
+    lastname VARCHAR(255),
+    city VARCHAR(255),
+    address VARCHAR(255)
+);
+
+=>DROP Table 
+DROP TABLE tablename; 
+DROP TABLE IF EXISTS tablename;  #shi kt yin delete
+DROP TABLE IF EXISTS tablename,tablename,tablename.....;
+
+
+*Drio table from current db to another db
+DROP TABLE database.tablename
+
+DROP TABLE IF EXISTS databasename.tablename;
+DROP TABLE IF EXISTS databasename.tablename,databasename.tablename,databasename.tablename....;
+
+
+--------------------------------------- 
+
+*Exercise 
+CREATE TABLE abc(
+    name VARCHAR(10)
+);
+
+CREATE TABLE IF NOT EXISTS abc(
+    name VARCHAR(10)
+);
+
+
+#error
+CREATE TABLE abc(
+    name VARCHAR(10)
+);
+
+DELETE FROM monitors;
+DELETE FROM wdf009.monitors;
+
+=>TRUNCATE
+CREATE TABBLE IF NOT EXISTS monitors(
+    brand VARCHAR(100),
+    price INT()
+)
+
+TRUNCATE TABLE monitors;
+TRUNCATE TABLE wdf009.monitors;
+
+SHOW TABLES;
+SELECT * FROM monitors;
+---------------------------------------
+
+
+=>RENAME table 
+*Syntax 
+ALTER TABLE tablename 
+RENAME TO newtablename;
+
+CREATE TABLE stocks(
+    item VARCHAR(100),
+    stock INT
+);
+
+SHOW TABLES;
+
+DESC stocks;
+
+INSERT INTO stocks(item,stock)
+VALUES('desktop',20),
+('laptop',10),
+('projector',5);
+
+SELECT * FROM stocks;
+
+ALTER TABLE stocks 
+RENAME TO itaccessories;
+
+SHOW TABLES;
+
+SELECT * FROM itaccessories;
+
+---------------------------------------
+
+=>Add New Columns to table 
+=Syntax (Single)
+Method 1
+ALTER TABLE tablname 
+ADD COLUMN columnname datatype;
+
+Method 2
+ALTER TABLE tablename
+ADD COLUMN columnname datatype FIRST|AFTER existingcolumnname;
+
+
+=Syntax (Multi)
+Method 1
+ALTER TABLE tablname 
+ADD COLUMN columnname1 datatype,
+ADD COLUMN columnname2 datatype;
+
+Method 2
+ALTER TABLE tablename
+ADD COLUMN columnname1 datatype FIRST|AFTER existingcolumnname,
+ADD COLUMN columnname2 datatype FIRST|AFTER existingcolumnname,
+ADD COLUMN columnname3 datatype FIRST|AFTER existingcolumnname;
+
+SELECT * FROM itaccessories;
+
+ALTER TABLE itaccessories 
+ADD COLUMN brand VARCHAR(50);
+
+DESC itaccessories; 
+
+SELECT * FROM itaccessories; 
+
+ALTER TABLE itaccessories 
+ADD COLUMN unitprice DECIMAL(10,2) NOT NULL FIRST; 
+
+DESC itaccessories;
+SELECT * FROM itaccessories;
+
+ALTER TABLE itaccessories 
+ADD COLUMN madeby VARCHAR(50) NOT NULL AFTER item;
+
+DESC itaccessories;
+SELECT * FROM itaccessories;
+
+
+
+=Exercise (Multi)
+
+ALTER TABLE itaccessories 
+ADD COLUMN status INT AFTER brand,
+ADD COLUMN createdby INT NOT NULL AFTER status;
+
+DESC itaccessories;
+SELECT * FROM itaccessories;
+
+INSERT INTO itaccessories(unitprice,item,madeby,stock,brand,status,createdby)
+VALUES (10,'keyboard','china',30,'a4tech',1,1001),
+(5,'mouse','tailwan',50,'logitech',1,1008);
+
+SELECT * FROM itaccessories;
+
+--------------------------------------
+
+=>RENAME column in table 
+=Syntax 
+
+ALTER TABLE tablename 
+CHANGE COLUMN oldcolumnname newcolumnname datatype; 
+
+DESC itaccessories;
+SELECT * FROM itaccessories;
+
+ALTER TABLE itaccessories 
+CHANGE COLUMN status totalqty INT; 
+
+DESC itaccessories;
+SELECT * FROM itaccessories;
+
+ALTER TABLE itaccessories 
+CHANGE COLUMN madeby manufacuter VARCHAR(30);
+
+DESC itaccessories;
+SELECT * FROM itaccessories;
+
+ALTER TABLE itaccessories 
+CHANGE COLUMN manufacuter manufacuter VARCHAR(50);
+
+--------------------------------------
+
+=>MODIFY column in table(Use for change column data type);
+
+=>Syntax (FA) 
+ALTER TABLE tablename 
+MODIFY columnname newdatatype; 
+
+=>Syntax (Multi)
+ALTER TABLE tablename 
+MODIFY columnname newdatatype,
+MODIFY columnname newdatatype;
+
+=Exercise (FA)
+DESC itaccessories;
+
+ALTER TABLE itaccessories 
+MODIFY manufacture VARCHAR(30);
+
+DESC itaccessories;
+SELECT * FROM itaccessories;
+
+ALTER TABLE itaccessories 
+MODIFY manufacture VARCHAR(50) NOT NULL
+
+DESC itaccessories;
+SELECT * FROM itaccessories;
+
+ALTER TABLE itaccessories 
+MODIFY item VARCHAR(100) NOT NULL;
+
+DESC itaccessories;
+SELECT * FROM itaccessories;
+
+=>Exercise (Multi)
+ALTER TABLE itaccessories 
+MODIFY item VARCHAR(30) NULL,
+MODIFY brand VARCHAR(30);
+
+*error = bcz of NULL already in data table;
+ALTER TABLE itaccessories 
+MODIFY status INT NOT NULL;
+
+=>Mover Column (change column)
+ALTER TABLE itaccessories 
+MODIFY unitprice DECIMAL(12,2) NOT NULL AFTER brand;
+
+DESC itaccessories;
+SELECT * FROM itaccessories;
+---------------------------------------
+
+=>Drop Column in table 
+
+=>Syntax (Single)
+ALTER TABLE tablename 
+DROP COLUMN columnname;
+
+=>Syntax (Multi)
+ALTER TABLE tablename 
+DROP COLUMN columnname,
+DROP COLUMN columnname;
+
+=>Exercise 
+DESC itaccessories;
+SELECT * FROM itaccessories;
+
+ALTER TABLE itaccessories 
+DROP COLUMN status;
+
+ALTER TABLE itaccessories 
+DROP COLUMN manufacture,
+DROP COLUMN createdby;
+
+SELECT * FROM itaccessories;
+---------------------------------------
+
+=>CREATE TABLE AS statment (Clone | Copy)
+
+=Syntax 
+
+CREATE TABLE IF NOT EXISTS newtable AS 
+SELECT * FROM  existingtable;
+
+DESC members;
+SELECT * FROM members;
+
+CREATE TABLE IF NOT EXISTS workers AS
+SELECT * FROM members;
+
+DESC workers;
+SELECT * FROM workers;
+
+---------------------------------------
+

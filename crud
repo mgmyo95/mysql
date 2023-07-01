@@ -1,0 +1,29 @@
+CRUD
+create 
+read 
+update 
+delete 
+admin 
+analysis 
+
+db2 
+1. temp storage (client side - web browser) 
+2. par storage (server side)
+
+Server Side (2 type)
+1. SQL Database 
+Mysql 
+PostgraSQL 
+SQLite 
+ORACLE 
+MSSQL 
+
+2 No SQL Database 
+mongo db 
+redis 
+aws  (amazong) 
+
+SQL = Structure Query Language 
+
+RDBMS
+Relational Database Mangement System

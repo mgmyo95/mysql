@@ -1,0 +1,46 @@
+=>RIGHT JOIN 
+=>LEFT JOIN 
+
+=>Syntax;
+
+SELECT columns 
+FROM table1 
+RIGHT JOIN table2 
+ON toble1.column = table2.column;
+---------------------------------------
+
+=>INNER JOIN 
+SELECT * FROM buyers 
+INNER JOIN orders 
+ON buyers.id = orders.buyer_id; 
+
+=>LEFT JOIN 
+SELECT * FROM buyers 
+LEFT JOIN orders 
+ON buyers.id = orders.buyer_id; 
+
+=>RIGHT JOIN 
+SELECT * FROM orders 
+RIGHT JOIN buyers 
+ON orders.buyer_id = buyers.id; 
+
+
+--------------------------------------
+
+SELECT firstname,lastname,orderdate,amount 
+FROM orders 
+RIGHT JOIN buyers 
+  ON orders.buyer_id = buyers.id;
+
+
+SELECT firstname,lastname,orderdate,amount 
+FROM orders 
+RIGHT JOIN buyers 
+  ON buyers.id = orders.buyer_id;
+
+--------------------------------------
+
+
+
+
+8JN

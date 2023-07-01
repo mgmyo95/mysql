@@ -1,0 +1,404 @@
+=>References and Cascade 
+
+CREATE TABLE IF NOT EXISTS buyers(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(20),
+    lastname VARCHAR(20),
+    email VARCHAR(50)
+);
+
+DESC buyers;
+
+INSERT INTO buyers(firstname,lastname,email)
+VALUES('aung','aung','aungaung@gmail.com'),
+('maung','maung','maungmaung@gmail.com'),
+('kyaw','kyaw','kyawkyaw@gmail.com'),
+('zaw','zaw','zawzaw@gmail.com'),
+('su','su','susu@gmail.com'),
+('aye','aye','ayeaye@gmail.com'),
+('yu','yu','yuyu@gmail.com');
+
+SELECT * FROM buyers;
+
+CREATE TABLE IF NOT EXISTS orders(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    orderdate DATE,
+    amount DECIMAL(10,2),
+    buyer_id INT   
+);
+
+buyers_id AND CONNECT TABLE TWO
+
+INSERT INTO orders(orderdate,amount,buyer_id)
+VALUES('2023/03/10',99.99,1),
+('2023/03/10',75.35,1),
+('2023/03/15',100.25,3),
+('2023/03/30',20.30,2),
+('2023/03/31',50,3);
+
+SELECT * FROM buyers;
+
+INSERT INTO orders(orderdate,amount,buyer_id)
+VALUES('2023/04/1',70.25,20);
+
+DELETE FROM buyers WHERE id = 7;
+SELECT * FROM buyers;
+
+DELETE FROM buyers WHERE id = 3;
+    SELECT * FROM buyers;
+    SELECT * FROM orders;
+
+SELECT * FROM buyers 
+LEFT JOIN orders 
+ON buyers.id = orders.buyer_id;
+
+SELECT * FROM orders
+
+LEFT JOIN buyers 
+ON buyers.id = orders.buyer_id;
+
+SELECT * FROM orders
+LEFT JOIN buyers 
+ON orders.buyer_id = buyers.id;
+
+DROP TABLE IF EXISTS orders;
+
+--------------------------------
+
+CREATE TABLE IF NOT EXISTS orders(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    orderdate DATE,
+    amount DECIMAL(10,2),
+    buyer_id INT,   
+    FOREIGN KEY(buyer_id) REFERENCES buyers(id)
+);
+
+DESC orders;
+SHOW INDEX FROM orders
+
+INSERT INTO orders(orderdate,amount,buyer_id)
+VALUES('2023/03/10',99.99,1),
+('2023/03/10',75.35,1),
+('2023/03/15',100.25,4),
+('2023/03/30',20.30,2),
+('2023/03/31',50,5);
+
+SELECT * FROM orders;
+
+*error because of REFERENCES 
+INSERT INTO orders(orderdate,amount,buyer_id)
+VALUES('2023/04/1',70.25,20);
+
+INSERT INTO orders(orderdate,amount,buyer_id)
+VALUES('2023/04/1',70.25,5);
+
+*error
+DELETE FROM buyers WHERE id = 4;
+
+INSERT INTO buyers(firstname,lastname,email)
+VALUES('thuta','aung','thutaung@gmail.com');
+
+DELETE FROM buyers WHERE id = 8;
+SELECT * FROM buyers;
+DROP TABLE IF EXISTS orders;
+--------------------------- 
+
+=>CASCADE (DELETE)
+
+CREATE TABLE IF NOT EXISTS orders(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    orderdate DATE,
+    amount DECIMAL(10,2),
+    buyer_id INT,   
+    FOREIGN KEY(buyer_id) REFERENCES buyers(id) ON DELETE CASCADE
+);
+
+DESC orders;
+SHOW INDEX FROM orders
+
+INSERT INTO orders(orderdate,amount,buyer_id)
+VALUES('2023/03/10',99.99,1),
+('2023/03/10',75.35,1),
+('2023/03/15',100.25,4),
+('2023/03/30',20.30,2),
+('2023/03/31',50,5);
+
+*error because of REFERENCES 
+INSERT INTO orders(orderdate,amount,buyer_id)
+VALUES('2023/04/1',70.25,20);
+
+*error
+INSERT INTO orders(orderdate,amount,buyer_id)
+VALUES('2023/04/1',70.25,5);
+
+**CAN 
+DELETE FROM buyers WHERE id = 4;
+
+SELECT * FROM buyers;
+SELECT * FROM orders;
+
+*error = can't truncate or drop cuz of fk in order table
+TRUNCATE TABLE buyers;
+DROP TABLE IF EXISTS buyers;
+
+-------------------------
+
+=>CASCADE (UPDATE)
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS buyers;
+
+DESC orders;
+DESC buyers;
+
+-------------------------
+CREATE TABLE IF NOT EXISTS buyers(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(20),
+    lstaname VARCHAR(20),
+    email VARCHAR(50)
+);
+
+INSERT INTO buyers(firstname,lstaname,email)
+VALUES('aung','aung','aungaung@gmail.com'),
+('maung','maung','maungmaung@gmail.com'),
+('kyaw','kyaw','kyawkyaw@gmail.com'),
+('zaw','zaw','zawzaw@gmail.com'),
+('su','su','susu@gmail.com'),
+('aye','aye','ayeaye@gmail.com'),
+('yu','yu','yuyu@gmail.com');
+
+SELECT * FROM buyers;
+
+CREATE TABLE IF NOT EXISTS orders(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    orderdate DATE,
+    amount DECIMAL(10,2),
+    buyer_id INT,   
+    FOREIGN KEY(buyer_id) REFERENCES buyers(id)
+);
+
+DESC orders;
+SHOW INDEX FROM orders
+
+INSERT INTO orders(orderdate,amount,buyer_id)
+VALUES('2023/03/10',99.99,1),
+('2023/03/10',75.35,1),
+('2023/03/15',100.25,4),
+('2023/03/30',20.30,2),
+('2023/03/31',50,5);
+
+SELECT * FROM orders;
+SELECT * FROM buyers; 
+
+DELETE FROM buyers WHERE id = 7;
+SELECT * FROM buyers;
+
+DELETE FROM buyers WHERE id = 3;
+SELECT * FROM buyers;
+
+*error 
+DELETE FROM buyers WHERE id = 5;
+SELECT * FROM buyers;
+SELECT * FROM buyers
+
+
+UPDATE buyers SET id = 8 WHERE id = 6;
+SELECT * FROM buyers;
+
+UPDATE buyers SET id = 9 WHERE id = 2;
+SELECT * FROM buyers;
+
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS buyers;
+
+-----------------------------------------------
+=>UPDATE 
+
+CREATE TABLE IF NOT EXISTS buyers(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(20),
+    lastname VARCHAR(20),
+    email VARCHAR(50)
+);
+
+DESC buyers;
+
+INSERT INTO buyers(firstname,lastname,email)
+VALUES('aung','aung','aungaung@gmail.com'),
+('maung','maung','maungmaung@gmail.com'),
+('kyaw','kyaw','kyawkyaw@gmail.com'),
+('zaw','zaw','zawzaw@gmail.com'),
+('su','su','susu@gmail.com'),
+('aye','aye','ayeaye@gmail.com'),
+('yu','yu','yuyu@gmail.com');
+
+SELECT * FROM buyers;
+
+CREATE TABLE IF NOT EXISTS orders(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    orderdate DATE,
+    amount DECIMAL(10,2),
+    buyer_id INT,   
+    FOREIGN KEY(buyer_id) REFERENCES buyers(id) ON UPDATE CASCADE
+);
+
+DESC orders;
+SHOW INDEX FROM orders
+
+INSERT INTO orders(orderdate,amount,buyer_id)
+VALUES('2023/03/10',99.99,1),
+('2023/03/10',75.35,1),
+('2023/03/15',100.25,4),
+('2023/03/30',20.30,2),
+('2023/03/31',50,5);
+
+SELECT * FROM orders;
+SELECT * FROM buyers;
+
+DELETE FROM buyers WHERE id = 3;
+SELECT * FROM buyers;
+
+*error 
+DELETE FROM buyers WHERE id = 5;
+SELECT * FROM buyers;
+
+UPDATE buyers SET id = 8 WHERE id = 6;
+SELECT * FROM buyers;
+
+UPDATE buyers SET id = 9 WHERE id = 1;
+SELECT * FROM buyers;
+SELECT * FROM orders;
+
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS buyers;
+
+---------------------------
+
+=>CASCADE (UPDATE DELETE)
+
+CREATE TABLE IF NOT EXISTS buyers(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(20),
+    lastname VARCHAR(20),
+    email VARCHAR(50)
+);
+
+DESC buyers;
+
+INSERT INTO buyers(firstname,lastname,email)
+VALUES('aung','aung','aungaung@gmail.com'),
+('maung','maung','maungmaung@gmail.com'),
+('kyaw','kyaw','kyawkyaw@gmail.com'),
+('zaw','zaw','zawzaw@gmail.com'),
+('su','su','susu@gmail.com'),
+('aye','aye','ayeaye@gmail.com'),
+('yu','yu','yuyu@gmail.com');
+
+SELECT * FROM buyer;
+SELECT * FROM orderr;
+
+SELECT * FROM buyers;
+
+CREATE TABLE IF NOT EXISTS orders(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    orderdate DATE,
+    amount DECIMAL(10,2),
+    buyer_id INT,   
+    FOREIGN KEY(buyer_id) REFERENCES buyers(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+DESC orders;
+SHOW INDEX FROM orders
+
+INSERT INTO orders(orderdate,amount,buyer_id)
+VALUES('2023/03/10',99.99,1),
+('2023/03/10',75.35,1),
+('2023/03/15',100.25,4),
+('2023/03/30',20.30,2),
+('2023/03/31',50,5);
+
+SELECT * FROM orders;
+SELECT * FROM buyers;
+
+DELETE FROM buyers WHERE id = 3;
+SELECT * FROM buyers;
+
+DELETE FROM buyers WHERE id = 5;
+SELECT * FROM buyers;
+SELECT * FROM orders;
+
+UPDATE buyers SET id = 8 WHERE id = 6
+SELECT * FROM buyers;
+
+UPDATE buyers SET id = 9 WHERE id = 1
+SELECT * FROM buyers;
+SELECT * FROM orders;
+
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS buyers;
+
+------------------------------------
+
+=>ON DELETE SET NULL 
+
+CREATE TABLE IF NOT EXISTS buyers(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(20),
+    lastname VARCHAR(20),
+    email VARCHAR(50)
+);
+
+DESC buyers;
+
+INSERT INTO buyers(firstname,lastname,email)
+VALUES('aung','aung','aungaung@gmail.com'),
+('maung','maung','maungmaung@gmail.com'),
+('kyaw','kyaw','kyawkyaw@gmail.com'),
+('zaw','zaw','zawzaw@gmail.com'),
+('su','su','susu@gmail.com'),
+('aye','aye','ayeaye@gmail.com'),
+('yu','yu','yuyu@gmail.com');   
+
+CREATE TABLE IF NOT EXISTS orders(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    orderdate DATE,
+    amount DECIMAL(10,2),
+    buyer_id INT,   
+    FOREIGN KEY(buyer_id) REFERENCES buyers(id) ON DELETE SET NULL
+);
+
+DESC orders;
+SHOW INDEX FROM orders
+
+INSERT INTO orders(orderdate,amount,buyer_id)
+VALUES('2023/03/10',99.99,1),
+('2023/03/10',75.35,1),
+('2023/03/15',100.25,4),
+('2023/03/30',20.30,2),
+('2023/03/31',50,5);
+
+SELECT * FROM orders;
+
+DELETE FROM buyers WHERE id = 3;
+SELECT * FROM buyers;
+
+DELETE FROM buyers WHERE id = 5;
+SELECT * FROM buyers;
+SELECT * FROM orders;
+
+DELETE FROM buyers WHERE id = 3;
+SELECT * FROM buyers;
+
+DELETE FROM buyers WHERE id = 1;
+SELECT * FROM buyers;
+SELECT * FROM orders;
+
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS buyers;
+
+------------------------------------
+
+
+
+
+

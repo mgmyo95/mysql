@@ -1,0 +1,27 @@
+=> Show Database;
+SHOW DATABASES;  #nt kyi lot ya tl 
+
+=> Create Database 
+CREATE DATABASE wdf5594 
+
+=>Delete Database 
+DROP DATABASE wdf5594
+
+=> Choose Database 
+USE wdf5594
+
+
+
+=>About Database Naming
+
+*CAN CREATE 
+Create Database book_stop;
+Create Database SchoolApp;
+Create Database bookingsystem;
+
+*CAN'T CREATE 
+*CAN'T CREATE  My App;
+*CAN'T CREATE  My$#App;
+
+--------------------------------------- 
+24DB

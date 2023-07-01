@@ -1,0 +1,177 @@
+=>select Data By Using WHERE Clause
+
+=Syntax
+SELECT * FROM tablename
+WHERE condition;
+
+SELECT column1,column2,column3..
+FROM tablename
+WHERE condition;
+
+Operators in the WHERE clause (9 types);
+
+=      Equal (exact shar)
+>      Greater than 
+<      Less than 
+>=     Greater than or Equal 
+<=     Less than or Equal 
+<>     Not equal;  Note : In some versions of SQL this operator written as != 
+       BETWEEN   Between as a certain range 
+LIKE   Search for a pattern 
+IN     To specify multiple possible values for a columns;
+
+--------------------------------------
+
+SELECT * FROM customers;
+
+SELECT * FROM customers;
+WHERE city = 'mandalay';
+
+SELECT firstname,lastname,city,country FROM customers
+WHERE city = 'mandalay';
+
+SELECT firstname,lastname,city,country FROM customers
+WHERE city LIKE 'mandalay';
+
+SELECT * FROM customers
+WHERE id = 15;
+
+SELECT * FROM customers;
+WHERE 
+
+----------------------
+
+SELECT * FROM customers
+WHERE firstname = 'tin htut';
+
+SELECT * FROM customers
+WHERE firstname = 'Tin Htut';
+
+SELECT * FROM customers
+WHERE firstname = 'Tin tut';
+
+SELECT * FROM customers
+WHERE firstname LIKE 'tin htut';
+
+SELECT * FROM customers
+WHERE firstname LIKE 'Tin Htut';
+
+SELECT * FROM customers
+WHERE firstname LIKE 'Tin tut';
+
+---------------------
+=> <> / !=
+
+SELECT * FROM customers
+
+SELECT id,firstname,lastname,city,country FROM customers 
+WHERE city <> 'mandalay';
+
+SELECT id,firstname,lastname,city,country FROM customers 
+WHERE city != 'mandalay';
+
+SELECT id,firstname,lastname,city,country FROM customers 
+WHERE NOT city = 'mandalay';
+
+*error 
+SELECT id,firstname,lastname,city,country FROM customers 
+WHERE city NOT 'mandalay';
+
+*error 
+SELECT id,firstname,lastname,city,country FROM customers 
+WHERE city NOT = 'mandalay';
+
+*error 
+SELECT id,firstname,lastname,city,country FROM customers 
+WHERE city !LIKE 'mandalay';
+
+SELECT id,firstname,lastname,city,country FROM customers 
+WHERE NOT city LIKE 'mandalay';
+
+SELECT id,firstname,lastname,city,country FROM customers 
+WHERE city NOT LIKE 'mandalay';
+
+-----------
+
+SELEC * FROM customers
+
+SELECT id,firstname,lastname,city,amount FROM customers
+WHERE amount = '200000';
+
+SELECT id,firstname,lastname,city,amount FROM customers
+WHERE amount < '200000';
+
+SELECT id,firstname,lastname,city,amount FROM customers
+WHERE amount <= '200000';
+
+SELECT id,firstname,lastname,city,amount FROM customers
+WHERE amount > '200000';
+
+SELECT id,firstname,lastname,city,amount FROM customers
+WHERE amount >= '200000';
+
+SELECT id,firstname,lastname,city,amount FROM customers
+WHERE amount <> '200000';
+
+--------------------------------------
+
+=> BETWEEN with AND
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE amount BETWEEN  200000 AND 300000;
+
+SELECT id,firstname,lastname,age,city FROM customers 
+WHERE amount BETWEEN  200000 AND 300000;
+
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE amount BETWEEN  200000 AND 300000 AND city = 'mandalay';
+
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE city = 'mandalay' AND amount BETWEEN  200000 AND 300000;
+
+*error
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE city = 'mandalay' && amount BETWEEN  200000 && 300000;
+
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE amount NOT BETWEEN  200000 AND 300000;
+
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE amount NOT BETWEEN  200000 AND 300000 AND city = 'yangon';
+
+--------------------------------------
+
+
+=>MODULE + - * / % 
+
+SELECT * FROM customers;
+
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE age = 17;
+
+
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE age+1 = 18;
+
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE age-5 = 25;
+
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE age*2 > 50;
+
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE amount/2 < 100000;
+
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE age%2 = 0;
+
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE age%2 LIKE 0;
+
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE age%2 != 0;
+
+SELECT id,firstname,lastname,age,amount,city FROM customers 
+WHERE age%2 NOT LIKE 0;
+
+
+13LK

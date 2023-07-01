@@ -1,0 +1,347 @@
+=>DATE() Function 
+
+*result = 2023-02-11
+SELECT DATE('2023-02-11');
+SELECT DATE("2023-02-11 09:30:40");
+
+---------------------------------------
+
+
+
+=>Year() Function 
+
+*result = 2023
+SELECT YEAR('2023-02-11');
+SELECT YEAR("2023-02-11 09:30:40");
+--------------------------------------
+
+=>DAYOFYEAR() Function 
+
+*result = 
+SELECT DAYOFYEAR('2023-02-11');
+SELECT DAYOFYEAR("2023-02-11 09:30:40");
+
+--------------------------------------
+=>MONTH() Function 
+
+*result = 02
+SELECT MONTH('2023-02-11');
+SELECT MONTH("2023-02-11 09:30:40");
+
+---------------------------------------
+
+=>WEEK() Function 
+
+*result = 6 / 52 weeks in a year;
+SELECT WEEK('2023-02-11');
+SELECT WEEK("2023-02-11 09:30:40");
+
+---------------------------------------
+
+=>MONTHNAME() Function 
+
+*result = February
+SELECT MONTHNAME('2023-02-11');
+SELECT MONTHNAME("2023-02-11 09:30:40");
+
+---------------------------------------
+
+=>DAYOFWEEK() Function 
+
+*NOTE 1 = Sunday , 2 = Monday , 3 = Tuesday , 4 = Wednesday , 5 = Thursday , 6 = Friday , 7 = Saturday
+*result = 1
+SELECT DAYOFWEEK('2023-02-12');
+SELECT DAYOFWEEK("2023-02-12 09:30:40");
+
+---------------------------------------
+
+=>DAY() Function 
+
+*result = 
+SELECT DAY('2023-02-12');
+SELECT DAY("2023-02-12 09:30:40");
+
+---------------------------------------
+
+=>DAYNAME() Function 
+
+*result = 2023-02-11
+SELECT DAYNAME('2023-02-12');
+SELECT DAYNAME("2023-02-12 09:30:40");
+
+---------------------------------------
+=>HOUR() Function 
+
+*result = 9
+SELECT HOUR("2023-02-12 09:30:40");
+
+---------------------------------------
+
+=>MINUTE() Function 
+
+*result = 9
+SELECT MINUTE("2023-02-12 09:30:40");
+
+---------------------------------------
+
+=>SECOND() Function 
+
+*result = 9
+SELECT SECOND("2023-02-12 09:30:40");
+
+---------------------------------------
+
+=>ADDDATE() Function 
+*Syntax 
+SELECT ADDDATE(date,INTERVAL value addunit)
+
+*result = 2033-02-12;
+SELECT ADDDATE("2023-02-12",INTERVAL 10 YEAR);
+
+*result = 2033-12-12;
+SELECT ADDDATE("2023-02-12",INTERVAL 10 MONTH);
+
+*result = 2033-02-26;
+SELECT ADDDATE("2023-02-12",INTERVAL 2 WEEK);
+
+*result = 2033-02-22;
+SELECT ADDDATE("2023-02-12",INTERVAL 10 DAY);
+
+----------------------------------------
+
+SELECT ADDDATE("2023-02-12 09:30:40",INTERVAL 10 HOUR);
+
+SELECT ADDDATE("2023-02-12 09:30:40",INTERVAL - 10 HOUR);
+
+SELECT ADDDATE("2023-02-12 09:30:40",INTERVAL 20 MINUTE);
+
+SELECT ADDDATE("2023-02-12 09:30:40",INTERVAL 20 SECOND);
+----------------------------------------
+
+=>DATE_ADD() Function 
+*Syntax 
+SELECT DATE_ADD(date,INTERVAL value addunit)
+
+*result = 2033-02-12;
+SELECT DATE_ADD("2023-02-12",INTERVAL 10 YEAR);
+
+*result = 2033-12-12;
+SELECT DATE_ADD("2023-02-12",INTERVAL 10 MONTH);
+
+*result = 2033-02-26;
+SELECT DATE_ADD("2023-02-12",INTERVAL 2 WEEK);
+
+*result = 2033-02-22;
+SELECT DATE_ADD("2023-02-12",INTERVAL 10 DAY);
+
+----------------------------------------
+
+SELECT DATE_ADD("2023-02-12 09:30:40",INTERVAL 10 HOUR);
+
+SELECT DATE_ADD("2023-02-12 09:30:40",INTERVAL - 10 HOUR);
+
+SELECT DATE_ADD("2023-02-12 09:30:40",INTERVAL 20 MINUTE);
+
+SELECT DATE_ADD("2023-02-12 09:30:40",INTERVAL 20 SECOND);
+----------------------------------------
+
+=>SUBDATE() Function (-)
+*Syntax 
+SELECT SUBDATE(date,INTERVAL value addunit)
+
+*result = 2013-02-12;
+SELECT SUBDATE("2023-02-12",INTERVAL 10 YEAR);
+
+*result = 2033-2-12;
+SELECT SUBDATE("2023-02-12",INTERVAL 10 MONTH);
+
+*result = 2033-01-29;
+SELECT SUBDATE("2023-02-12",INTERVAL 2 WEEK);
+
+*result = 2033-02-12;
+SELECT SUBDATE("2023-02-12",INTERVAL 10 DAY);
+
+----------------------------------------
+
+SELECT SUBDATE("2023-02-12 09:30:30",INTERVAL 10 HOUR);
+
+SELECT SUBDATE("2023-02-12 09:30:40",INTERVAL - 10 HOUR);
+
+SELECT SUBDATE("2023-02-12 09:30:40",INTERVAL 20 MINUTE);
+
+SELECT SUBDATE("2023-02-12 09:30:40",INTERVAL 20 SECOND);
+----------------------------------------
+
+=>DATE_SUB() Function (-)
+*Syntax 
+SELECT DATE_SUB(date,INTERVAL value addunit)
+
+*result = 2013-02-12;
+SELECT DATE_SUB("2023-02-12",INTERVAL 10 YEAR);
+
+*result = 2033-2-12;
+SELECT DATE_SUB("2023-02-12",INTERVAL 10 MONTH);
+
+*result = 2033-01-29;
+SELECT DATE_SUB("2023-02-12",INTERVAL 2 WEEK);
+
+*result = 2033-02-12;
+SELECT DATE_SUB("2023-02-12",INTERVAL 10 DAY);
+
+----------------------------------------
+
+SELECT DATE_SUB("2023-02-12 09:30:30",INTERVAL 10 HOUR);
+
+SELECT DATE_SUB("2023-02-12 09:30:40",INTERVAL - 10 HOUR);
+
+SELECT DATE_SUB("2023-02-12 09:30:40",INTERVAL 20 MINUTE);
+
+SELECT DATE_SUB("2023-02-12 09:30:40",INTERVAL 20 SECOND);
+----------------------------------------
+
+=>DATEDIFF("2023-02-18","2023-02-10");
+
+*Result = 8
+
+SELECT DATEDIFF("2023-02-18","2023-02-10");
+
+
+SELECT DATEDIFF("2023/02/18","2023/02/10");
+SELECT DATEDIFF("2023/02/18 09:30:00","2023/01/10 09:00:00");
+
+*Result = NULL 
+SELECT DATEDIFF("18-02-2023","10-02-2023");
+
+*Result = -8
+SELECT DATEDIFF("2023/02/10","2023/02/18");
+
+SELECT * FROM students;
+
+SELECT name,birthdate,DATEDIFF(NOW(),birthdate)FROM students;
+
+---------------------------------------
+            H:M:S
+=>TIMEDIFF(time1,time2);
+
+*RESULT = 00:30:00
+SELECT TIMEDIFF("09:30:00","09:00:00");
+
+SELECT TIMEDIFF("2023/02/18 09:30:00","2023/02/1;0 09:00:00");
+
+---------------------------------------
+
+=>DATE_FORMAT(date,format);
+    
+SELECT DATE_FORMAT(CURDATE(),"%Y-%M-01");
+SELECT DATE_FORMAT(CURDATE(),"%y-%m-01");  //23-02-01
+SELECT DATE_FORMAT(CURDATE(),"%y/%m/01");  //23/02/01
+SELECT DATE_FORMAT(CURDATE(),"%y %m 01");  //23 02 02
+SELECT DATE_FORMAT(CURDATE(),"%Y%m01");
+//20230201
+
+SELECT DAY(DATE_FORMAT(CURDATE(),"%y-%m-01"));  //1
+SELECT DAY(DATE_FORMAT(CURDATE(),"%y-%m-19"));  //1
+SELECT DAY(DATE_FORMAT(CURDATE(),"19-%y-%m"));  //*Wrong 23
+
+----------------------------------------
+
+=>TIME_FORMAT(time,format);
+
+Format               Description    
+%H                   Hour (00 to 23)      
+%h                   Hour (00 to 12)
+%I                   Hour (00 to 12)
+
+-----
+
+%i                   Minutes(00 to 59)
+
+------
+
+%S                   Seconds(00 to 59)
+%s                   Seconds(00 to 59)
+
+------
+
+%p                  AM or PM 
+
+------
+
+%r                  Time in 12 hour AM or PM format (hh:mm:ss AM/PM);
+
+------
+
+%T                  Time in 24 hour format (hh:mm:ss);
+
+------
+
+SELECT TIME_FORMAT("13:30:40","%H-%i-%s"); //13:30:40
+SELECT TIME_FORMAT("13:30:40","%h-%i-%s"); //01:30:40
+SELECT TIME_FORMAT("13:30:40","%h-%I-%s"); //13:30:40
+SELECT TIME_FORMAT("13:30:40","%I-%i-%S"); //13:30:40
+
+SELECT TIME_FORMAT("13:30:40","%H-%i-%s %p"); //13:30:40 PM
+SELECT TIME_FORMAT("13:30:40","%I-%i-%s %p");  //01:30:40 PM
+
+SELECT TIME_FORMAT("13:30:40","%r");    
+SELECT TIME_FORMAT("09:30:40","%r");
+
+SELECT TIME_FORMAT("13:30:40","%T");
+SELECT TIME_FORMAT("09:30:40","%T");
+
+-------------------------------------
+
+=>GET_FORMAT() function with DATE_FORMAT
+
+USA = American Format 
+EUR = European Format 
+JIS = Japanese Industrial Standard
+ISO = International Organization for Standardization 
+INTERNAL = internal 
+
+Function                                    Result 
+GET_FORMAT(DATE,"USA")                      "%m.%d.%Y"
+GET_FORMAR(DATE,"EUR")                      "%d.%m.%Y"
+GET_FORMAR(DATE,"JIS")                      "%Y-%m-%d"
+GET_FORMAR(DATE,"ISO")                      "%Y-%m-%d"
+GET_FORMAR(DATE,"INTERVAL")                 "%Y%m%d"
+
+GET_FORMAT(TIME,"USA")                      "%h.%i.%s %p"
+GET_FORMAR(TIME,"EUR")                      "%H.%i.%s %H hour (00 to 23)"
+GET_FORMAR(TIME,"JIS")                      "%H-%i-%s"
+GET_FORMAR(TIME,"ISO")                      "%H-%i-%s"
+GET_FORMAR(TIME,"INTERVAL")                 "%H%i%s"
+
+GET_FORMAT(DATETIME,"USA")                      
+GET_FORMAR(DATETIME,"EUR")                      
+GET_FORMAR(DATETIME,"JIS")                      
+GET_FORMAR(DATETIME,"ISO")                         
+GET_FORMAR(DATETIME,"INTERVAL")        
+
+=Syntax 
+GET_FORMAT(DATE/TIME/DATETIME,Format)
+
+SELECT CURDATE();
+SELECT DATE_FORMAT(CURDATE(),GET_FORMAT(DATE,"USA"));   //02.25.2023
+SELECT DATE_FORMAT(CURDATE(),GET_FORMAT(DATE,"EUR"));   //25.02.2023
+SELECT DATE_FORMAT(CURDATE(),GET_FORMAT(DATE,"JIS"));   //2023-02-25
+SELECT DATE_FORMAT(CURDATE(),GET_FORMAT(DATE,"ISO"));   //2023-02-25
+SELECT DATE_FORMAT(CURDATE(),GET_FORMAT(DATE,"INTERNAL"));  //20230225
+
+SELECT DATE_FORMAT(CURTIME(),GET_FORMAT(TIME,"USA"));   //07:40:18 AM
+SELECT DATE_FORMAT(CURTIME(),GET_FORMAT(TIME,"EUR"));   //07.40.18
+SELECT DATE_FORMAT(CURTIME(),GET_FORMAT(TIME,"JIS"));   //07:40:18
+SELECT DATE_FORMAT(CURTIME(),GET_FORMAT(TIME,"ISO"));   //07:40:18
+SELECT DATE_FORMAT(CURTIME(),GET_FORMAT(TIME,"INTERNAL"));  //074019
+
+SELECT DATE_FORMAT(NOW(),GET_FORMAT(DATETIME,"USA"));
+SELECT DATE_FORMAT(NOW(),GET_FORMAT(DATETIME,"EUR"));
+SELECT DATE_FORMAT(NOW(),GET_FORMAT(DATETIME,"JIS"));
+SELECT DATE_FORMAT(NOW(),GET_FORMAT(DATETIME,"ISO"));
+SELECT DATE_FORMAT(NOW(),GET_FORMAT(DATETIME,"INTERNAL"));
+
+
+
+18DT
+
+

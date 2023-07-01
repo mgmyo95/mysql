@@ -1,0 +1,5 @@
+myanmar font utft_unicode_ci 
+database name pay a myar kain pay 
+number twel kyi pl pay INT  
+text and number > varchar = less text
+text = many text ya

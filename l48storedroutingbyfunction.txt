@@ -1,0 +1,42 @@
+=> Stored Routines
+(i) PROCEDURE (we can call stored procedures)
+	(a)IN = Input Parameters
+	(b)OUT = Output Parameters
+	(d)INOUT = Inout Parameters
+
+(ii)FUNCTION
+	(a)Build In Function
+	(b)User Define Function
+		(i)Input Parameters (fuction always return only 1 value./ function can be with parameter or not )
+
+------------------------------ 
+=>(ii)FUNCTION (b) User Define Function 
+
+SELECT * FROM products;
+SELECT * FROM checkout;  
+
+SELECT products.name,products.price,.checkout.qty,(products.price * checkouts.qty) AS totalamount FROM checkouts 
+LEFT JOIN products 
+ON checkout.product_id = products.id; 
+
+=Total amount
+
+SELECT SUM(products.price * checkouts.qty) AS totalamount FROM checkouts
+LEFT JOIN products 
+ON checkout.product_id = products.id; 
+
+DELIMITER // 
+
+    CREATE FUNCTION totalamount_fun()
+    RETURNS DECIMAL 
+        BEGIN 
+            DECLARE result DECIMAL;
+            SELECT SUM(products.price * checkouts.qty)
+            INTO result 
+            FROM checkouts 
+            LEFT JOIN products 
+            ON checkouts.product_id = products.id;
+            RETURN result;
+        END;//
+
+DELIMITER ;
