@@ -70,10 +70,10 @@ FROM capitals
 WHERE accounts = "credit"
 ORDER BY date DESC;
 
-SELECT date,name,amount,payment,accounts
-FROM capitals
-WHERE accounts = "debit"
-ORDER BY date DESC;
+	SELECT date,name,amount,payment,accounts
+	FROM capitals
+	WHERE accounts = "debit"
+	ORDER BY date DESC;
 
 DELIMITER //
 
@@ -98,21 +98,25 @@ DROP PROCEDURE IF EXISTS capitalreportaccounts_proc;
 
 
 *error
-CALL capitalreportaccounts_proc('debit'); 
+CALL capitalreportaccounts_proc(); 
 
 
 CALL capitalreportaccounts_proc('credit');
 CALL capitalreportaccounts_proc('debit'); 
 
 ----------------------------------------------
+SELECT date,name,amount,payment,accounts
+		FROM capitals
+		WHERE date = "2023-02-02";
+
 
 DELIMITER //
 
-	CREATE PROCEDURE capitalreportdate_proc(date DATE)
+	CREATE PROCEDURE capitalreportdate_proc(p_date DATE)
 	BEGIN
 		SELECT date,name,amount,payment,accounts
 		FROM capitals
-		WHERE date = date
+		WHERE date = p_date
 		ORDER BY date DESC;
 	END; //
 
@@ -158,10 +162,10 @@ DELIMITER ;
 
 SET @totalcustomers := 0;
 SELECT @totalcustomers;
-
 CALL totalcureportbycity_proc('bago',@totalcustomers);
-
 SELECT @totalcustomers;
+
+SHOW PROCEDURE STATUS WHERE DB = "wdf009";
 --------------------------------
 
 => IN/ OUT & INOUT Parameters
@@ -192,7 +196,7 @@ SET @min := 0;
 @max := 0;
 SELECT @min,@max;
 
-CALL maimaxcubycity_proc('bago',@min,@max);
+CALL minmaxcubycity_proc('bago',@min,@max);
 SELECT @min,@max;
 SELECT (@max-@min) AS different;
 
@@ -201,6 +205,9 @@ SELECT (@max-@min) AS different;
 =>IN / OUT & INOUT Parameters
 
 SELECT * FROM customers;
+
+SELECT MIN(age),MAX(age),city FROM customers
+WHERE city = "yangon";
 
 DELIMITER //
 
@@ -217,10 +224,13 @@ DELIMITER //
 	END;//
 DELIMITER ;
 
-SET @city := "bago",
+SET @city := "yangon",
 @min := 0,
 @max := 0;
 SELECT @city,@min,@max;
 
 CALL minmaxcuagebycity_proc(@city,@min,@max);
 SELECT @city,@min,@max;
+SELECT (@max - @min) AS different;
+
+
