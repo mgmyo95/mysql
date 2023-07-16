@@ -42,7 +42,7 @@ GROUP BY name;
 =>capital by USD
 SELECT name,SUM(amount), payment,accounts FROM capitals
 WHERE accounts = 'credit' AND payment = "USD"
-GROUP BY name;
+GROUP BY name;	
 
 
 
@@ -70,10 +70,10 @@ FROM capitals
 WHERE accounts = "credit"
 ORDER BY date DESC;
 
-	SELECT date,name,amount,payment,accounts
-	FROM capitals
-	WHERE accounts = "debit"
-	ORDER BY date DESC;
+SELECT date,name,amount,payment,accounts
+FROM capitals
+WHERE accounts = "debit"
+ORDER BY date DESC;
 
 DELIMITER //
 
@@ -85,7 +85,7 @@ DELIMITER //
 		ORDER BY date DESC;
 	END; //
 
-DELIMITER;
+DELIMITER ;
 
 =>SHOW TABLES
 =>SHOW FULL TABLES
@@ -106,7 +106,7 @@ CALL capitalreportaccounts_proc('debit');
 
 ----------------------------------------------
 SELECT date,name,amount,payment,accounts
-		FROM capitals
+		FROM capitals		
 		WHERE date = "2023-02-02";
 
 

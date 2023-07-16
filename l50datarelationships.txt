@@ -1,0 +1,108 @@
+=>Data Relationships 
+(i)ONE to ONE Relationships (1:1)
+(i)ONE to MANY Relationships (1:n)
+(iii)MANY to MANY Relationships (n:n) 
+
+students 1:1 studentsinfos
+teachers 1:n classes 
+enrollments n:n 
+reviews n:n 
+
+DLT Co.,Ltd  
+
+=>students 
+id 
+regcode
+firstname 
+lastname 
+gender 
+dob 
+email 
+password  
+status 
+created_at 
+updated_at 
+
+=>studentsinfos 
+id 
+coverphoto 
+profilephoto 
+nrc 
+phone 
+address 
+student_id (students.pk)fk 
+
+=>subjects 
+id 
+img 
+course 
+subjecttype 
+content
+requirement 
+
+=>teachers 
+id (pk)
+name 
+phone 
+email 
+
+=>classes 
+id 
+subject_id(subject_pk)fk 
+batch 
+fee
+startdate 
+week 
+starttime 
+endtime  
+teacher_id(teachers_pk)fk
+
+=>attendances 
+id 
+class_id(classes_pk)fk
+student_id(student_pk)fk 
+attcode 
+remark 
+created_at 
+
+=>datastorage 
+id 
+class_id(classes_pk)fk 
+enrollments_id(enrollments_pk)fk 
+created_at 
+
+=>enrollments 
+id 
+paymentmethod 
+student_id(student_pk)fk 
+class_id(classes_pk)fk 
+status 
+created_at 
+updated_at 
+
+=reviews 
+id 
+rating 
+remark 
+class_id(classes_pk)fk 
+student_id (students.pk)fk 
+
+
+15PP 
+
+CREATE TABLE IF NOT EXISTS customers(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    phone VARCHAR(50)UNIQUE,
+    address VARCHAR(50),
+    startdate CURRENT_TIMESTAMP 
+    expiredate DATE
+);
+
+CREATE TABLE IF NOT EXISTS paymenttypes(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    payment ENUM('VISA','MPU','MASTER') NOT NULL,
+    paymentamount INT,
+    cloth VARCHAR(50),
+    clothamount INT,
+);
