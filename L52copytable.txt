@@ -1,0 +1,64 @@
+=>Copy/Clone/Duplicate Table 
+=Syntax 
+CREATE TABLE IF NOT EXISTS newtablename 
+SELECT column1,column2,column3 
+FROM existingtablename;
+
+
+CREATE TABLE IF NOT EXISTS newtablename 
+SELECT column1,column2,column3 
+FROM existingtablename
+WHERE condition;
+
+------------------------------------------- 
+
+=>Exercise 
+
+CREATE TABLE IF NOT EXISTS original_table(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    productname VARCHAR(45)NOT NULL,
+    brandname VARCHAR(45) DEFAULT NULL,
+    madeby VARCHAR(30) DEFAULT NULL,
+    year INT NOT NULL
+);
+
+DESC original_table;
+
+INSERT INTO original_table(productname,brandname,madeby,year)
+VALUE('AV25','Asus','China',2020),
+('AS50','Asus','China',2022),
+('F11','Oppo','China',2020),
+('S3','Samsung','China',2022),
+('V35','Vivo','China',2021),
+('Iphone 14','Apple','China',2023),
+('iphone 13','Apple','China',2022);
+
+SELECT * FROM original_table;
+
+CREATE TABLE IF NOT EXISTS duplicate_table 
+SELECT * FROM original_table;
+
+SELECT * FROM duplicate_table;
+
+DROP TABLE IF EXISTS duplicate_table;
+
+CREATE TABLE IF NOT EXISTS duplicate_table 
+SELECT * FROM original_table
+WHERE year = 2020;
+SELECT * FROM duplicate_table;
+
+DROP TABLE IF EXISTS duplicate_table;
+
+CREATE TABLE IF NOT EXISTS duplicate_table 
+SELECT productname,brandname,year FROM original_table;
+
+SELECT * FROM duplicate_table;
+
+DROP TABLE IF EXISTS duplicate_table;
+
+CREATE TABLE duplicate_table LIKE original_table;
+SELECT * FROM duplicate_table;
+INSERT duplicate_table SELECT * FROM original_table;
+DROP TABLE IF EXISTS duplicate_table;
+
+------------------------------------------------
