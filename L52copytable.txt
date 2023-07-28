@@ -45,11 +45,12 @@ DROP TABLE IF EXISTS duplicate_table;
 CREATE TABLE IF NOT EXISTS duplicate_table 
 SELECT * FROM original_table
 WHERE year = 2020;
+    
 SELECT * FROM duplicate_table;
 
 DROP TABLE IF EXISTS duplicate_table;
 
-CREATE TABLE IF NOT EXISTS duplicate_table 
+CREATE TABLE IF NOT EXISTS duplicate_table  
 SELECT productname,brandname,year FROM original_table;
 
 SELECT * FROM duplicate_table;
@@ -58,7 +59,9 @@ DROP TABLE IF EXISTS duplicate_table;
 
 CREATE TABLE duplicate_table LIKE original_table;
 SELECT * FROM duplicate_table;
+
 INSERT duplicate_table SELECT * FROM original_table;
+SELECT * FROM duplicate_table;
 DROP TABLE IF EXISTS duplicate_table;
 
 ------------------------------------------------
