@@ -23,14 +23,54 @@ status
 created_at 
 updated_at 
 
-=>studentsinfos 
+
+CREATE TABLE IF NOT EXISTS students(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    regcode VARCHAR(10)NOT NULL UNIQUE,
+    firstname VARCHAR(20)NOT NULL,
+    lastname VARCHAR(20),
+    gender ENUM('1','0') NOT NULL,
+    dob DATE NOT NULL,
+    email VARCHAR(50)NOT NULL UNIQUE,
+    password VARCHAR(255)NOT NULL,
+    status ENUM('ENABLE','DISABLE','TERMINATE')DEFAULT 'ENABLE',
+    created TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO students(regcode,firstname,lastname,gender,dob,email,password)
+VALUES('wdf1001','aung','aung',1,'2000-1-31','aungaun@gmail.com','12345'),
+('wdf1002','su','su',0,'2000-2-28','susu@gmail.com','12345');
+
+SELECT * FROM students;
+
+
+DESC students;
+
+
+=>studentinfos 
 id 
 coverphoto 
 profilephoto 
 nrc 
 phone 
-address 
+address
+role
 student_id (students.pk)fk 
+
+NOTE:: Role 1 = students 
+       Role 2 = teachers
+
+CREATE TABLE IF NOT EXISTS studentinfos(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    coverphoto VARCHAR(255),
+    profilephoto VARCHAR(255),
+    phone VARCHAR(15)NOT NULL UNIQUE,
+    address VARCHAR(100) NOT NULL,
+    student_id INT 
+    role INT DEFAULT 1
+    FOREIGN KEY(studen_id) REFERENCES students('id') ON UPDATE CASCADE ON DELETE CASCADE
+);
 
 =>subjects 
 id 
@@ -40,11 +80,26 @@ subjecttype
 content
 requirement 
 
+CREATE TABLE IF NOT EXISTS subjects(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    img VARCHAR(255),
+    course VARCHAR(100)NOT NULL UNIQUE,
+    subjecttype SET('THEORY','PROJECT')NOT NULL,
+    fee DECIMAL(10,2) DEFAULT 0,
+    requirement VARCHAR(255)
+);
+
 =>teachers 
 id (pk)
 name 
 phone 
 email 
+
+CREATE TABLE IF NOT EXISTS teachers(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(20)NOT NULL,
+    phone VARCHAR(50)NOT NULL UNIQUE
+);
 
 =>classes 
 id 
@@ -57,6 +112,20 @@ starttime
 endtime  
 teacher_id(teachers_pk)fk
 
+CREATE TABLE IF NOT EXISTS classes(
+    id INT NOT AUTO_INCREMENT PRIMARY KEY,
+    subject_id INT,
+    batch INT NOT NULL,
+    fee DECIMAL(10,2) DEFAULT 0,
+    startdate DATE NOT NULL,
+    week SET('sun','mon','tue','wed','thu','fri','sat')NOT NULL,
+    starttime TIME NOT NULL,
+    endtime TIME NOT NULL
+    teacher_id INT,
+    FOREIGN KEY(subject_id) REFERENCES subjects(id),
+    FOREIGN KEY(teacher_id) REFERENCES teachers(id)
+);
+
 =>attendances 
 id 
 class_id(classes_pk)fk
@@ -65,11 +134,37 @@ attcode
 remark 
 created_at 
 
-=>datastorage 
+CREATE TABLE IF NOT EXISTS attendances(
+    id INT NOT AUTO_INCREMENT PRIMARY KEY,
+    class_id INT,
+    student_id INT,
+    attcode VARCHAR(5)NOT NULL,
+    remark VARCHAR(100)
+    created_at TIMESTAMP DEFAULT NOW()
+
+    FOREIGN KEY(class_id) REFERENCES classes(id),
+    FOREIGN KEY(student_id) REFERENCES students(id)
+);
+
+=>datastorages
 id 
+url
 class_id(classes_pk)fk 
-enrollments_id(enrollments_pk)fk 
+enrollments_id(enrollments_pk)fk
+classdate  
 created_at 
+
+CREATE TABLE IF NOT EXISTS datastorages(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    url VARCHAR(255)NOT NULL,
+    class_id INT NOT NULL,
+    classdate DATE NOT NULL,
+    enrollmentS_id INT,
+    FOREIGN KEY(class_id) REFERENCES classes(id) ON UPDATE CASCADE,
+    FOREIGN KEY(enrollments_id) REFERENCES enrollments(id)
+);
+
+DESC datastorages;
 
 =>enrollments 
 id 
@@ -80,6 +175,18 @@ status
 created_at 
 updated_at 
 
+CREATE TABLE IF NOT EXISTS enrollments(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    class_id INT,
+    student_id INT,
+    paymentmethod ENUM('wire','kpay','cbpay','visa','wavemoney') NOT NULL,
+    status ENUM('enable','disable') DEFAULT 'enable',
+    created_at TIMESTAMP DEFAULT NOT(),
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY(class_id) REFERENCES classes(id) ON UPDATE CASCADE,
+    FOREIGN KEY(student_id) REFERENCES student(id) ON UPDATE CASCADE 
+);
+
 =reviews 
 id 
 rating 
@@ -87,22 +194,16 @@ remark
 class_id(classes_pk)fk 
 student_id (students.pk)fk 
 
-
-15PP 
-
-CREATE TABLE IF NOT EXISTS customers(
+CREATE TABLE IF NOT EXISTS reviews(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50),
-    phone VARCHAR(50)UNIQUE,
-    address VARCHAR(50),
-    startdate CURRENT_TIMESTAMP 
-    expiredate DATE
-);
+    rating INT NOT NULL CHECK(rating <= 5),
+    remark VARCHAR(255),
+    class_id INT,
+    student_id INT,
+     created_at TIMESTAMP DEFAULT NOT(),
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY(class_id) REFERENCES classes(id) ON UPDATE CASCADE,
+    FOREIGN KEY(student_id) REFERENCES student(id) ON UPDATE CASCADE
+)
 
-CREATE TABLE IF NOT EXISTS paymenttypes(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    payment ENUM('VISA','MPU','MASTER') NOT NULL,
-    paymentamount INT,
-    cloth VARCHAR(50),
-    clothamount INT,
-);
+

@@ -1,0 +1,95 @@
+=>PHP Myadmin 
+localhost/phpmyadmin > Click User account 
+Click "Add user account"
+username : user text field : mgmyo 
+host : local               : localhost 
+password : user text field : password12345 
+re-type :                  : password12345 
+Authentication Plugin      : Caching sha1 Authentication
+
+Data = chec All 
+Structure = Check All 
+Administractor = Check All 
+Resource limits = 0 0 0 0;
+
+
+=>Terminal 
+linux 
+ctrl+alt+t = terminal 
+
+windows 
+command prompt 
+
+=>linux
+sudo mysql  
+mysql -u root -p
+or 
+mysql -u root -p -h 127.0.0.1
+
+root 
+password 
+
+=>mysql logout 
+exit 
+or 
+\q
+
+=>mysql command line with XAMPP for windows 
+cd\ 
+cd xampp 
+cd mysql 
+cd bin 
+mysql -u root -p   (mysql.exe) 
+or 
+mysql -u root -p -h 127.0.0.1
+
+=>mysql command line with WAMP for windows 
+cd\ 
+cd wamp
+cd bin 
+cd mysql 
+mysql -u root -p   (mysql.exe) 
+or 
+mysql -u root -p -h 127.0.0.1 
+
+SHOW DATABASES;
+USE DATABASE;
+
+=>Current User 
+SELECT USER();
+SELECT CURRENT_USER();
+
+=>List all users 
+SELECT USER FROM mysql.user;
+SELECT USER.HOST FROM mysql.user;
+
+=>CREATE User 
+CREATE USER 'mgmyo'@'localhost' IDENTIFIED BY 'password12345'; 
+OR 
+CREATE USER 'john'@'localhost' IDENTIFIED BY 'password1234567';
+
+SELECT USER FROM mysql:user;
+SELECT USER(); 
+
+=>Change User's Password 
+ALTER USER 'mgmyo'@'localhost' IDENTIFIED WITH MYSQL_NATIVE_PASSWORD BY 'password1234567';
+
+=>Grenting a User Permission 
+GRANT ALL PRIVILEGES ON *.* TO 'mgmyo'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+or 
+GRANT CREATE,ALTER,DROP,INSERT,UPDATE,DELETE,SELECT,REFERENCES ON *.* TO 'john'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+=>Review a user's current Permission 
+SHOW GRANTS FOR 'mgmyo'@'localhost';
+
+=>Drop User 
+DROP USER 'mgmyo'@'localhost'; 
+
+SELECT USER();
+SELECT USER FROM mysql.user;
+
+----------------------------------------------------- 
+
+19SFN

@@ -64,4 +64,5 @@ INSERT duplicate_table SELECT * FROM original_table;
 SELECT * FROM duplicate_table;
 DROP TABLE IF EXISTS duplicate_table;
 
-------------------------------------------------
+------------------------------------------------ 
+

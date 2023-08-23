@@ -1,0 +1,102 @@
+=>Encrypt 
+
+=>SHA1(string) Function 
+
+*result = 4de8a3925d2690db3060094bcf055cdb2379f255
+          4de8a3925d2690db3060094bcf055cdb2379f255
+SELECT SHA1("Save Myanmar");
+
+*result = NULL;
+SELECT SHA1(NULL);
+
+=>MD5('string') Function 
+*result = be635d4b5c5c730a1a30fb9a5289a4e6 
+          be635d4b5c5c730a1a30fb9a5289a4e6
+SELECT MD5("Save Myanmar");
+
+*result = NULL;
+SELECT MD5(NULL);
+
+CREATE TABLE IF NOT EXISTS accounts(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(50)NOT NULL,
+    password VARCHAR(255)
+);
+
+DESC accounts;
+
+INSERT INTO accounts(name,email,password)
+    VALUES('aung aung','aungaun@gmail.com','123456'),
+    ('mg mg','mgmg@gmail.com','abcdef'),
+    ('zaw zaw','zawzaw@gmail.com','abcd1234');
+
+SELECT * FROM accounts;
+
+SELECT name,email,
+IF(password=123456,'correct password','incorect password') AS verify FROM accounts;
+
+SELECT name,email,password,
+CASE 
+
+    WHEN password = '123456' THEN 'correct password by 123456'
+    WHEN password = 'abcdef' THEN 'correct password by abcdef'
+    WHEN password = 'abcd1234' THEN 'correct password by abcd1234'
+
+END AS 'verity password' 
+FROM accounts;
+
+
+INSERT INTO accounts(name,email,password)
+VALUES('aye aye','ayeaye@gmail.com',SHA1('123456')),
+('Nandar','nandar@gmail.com',SHA1('abcdef')),
+('zue zue','zuezue@gmail.com',SHA1('abcd1234'));
+
+SELECT * FROM accounts;
+
+
+SELECT name,email,password,
+CASE 
+
+    WHEN password = '123456' THEN 'correct password by 123456'
+    WHEN password = 'abcdef' THEN 'correct password by abcdef'
+    WHEN password = 'abcd1234' THEN 'correct password by abcd1234'
+    ELSE 'incorect password'
+
+END AS 'verity password' 
+FROM accounts;
+
+
+SELECT name,email,password,
+CASE 
+
+    WHEN password = SHA1('123456') THEN 'correct password by 123456'
+    WHEN password = SHA1('abcdef') THEN 'correct password by abcdef'
+    WHEN password = MD5('abcd1234') THEN 'correct password by abcd1234'
+    ELSE 'incorect password'
+
+END AS 'verity password' 
+FROM accounts;
+
+
+INSERT INTO accounts(name,email,password)
+VALUES('thu zar','thuzar@gmail.com',SHA1(MD5('123456'))),
+('mu yar','muyar@gmail.com',SHA1(MD5('abcdef'))),
+('hnin hnin','hninhnin@gmail.com',SHA1(MD5('abcd1234')));
+
+SELECT * FROM accounts;
+
+SELECT name,email,password,
+CASE 
+
+    WHEN password = SHA1('123456') THEN 'correct password by 123456'
+    WHEN password = MD5('abcdef') THEN 'correct password by abcdef'
+    WHEN password = SHA1(MD5('abcd1234')) THEN 'correct password by abcd1234'
+    ELSE 'incorect password'
+
+END AS 'verity password' 
+FROM accounts;
+
+
+
+

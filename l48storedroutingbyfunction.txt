@@ -15,7 +15,7 @@
 SELECT * FROM products;
 SELECT * FROM checkout;  
 
-SELECT products.name,products.price,.checkout.qty,(products.price * checkouts.qty) AS totalamount FROM checkouts 
+SELECT products.name,products.price,checkout.qty,(products.price * checkouts.qty) AS totalamount FROM checkouts 
 LEFT JOIN products 
 ON checkouts.product_id = products.id; 
 
